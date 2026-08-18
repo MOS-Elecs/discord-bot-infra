@@ -1,0 +1,44 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: discord-bot
+  namespace: flux-system
+spec:
+  image: ghcr.io/MOS-Elecs/discord-bot
+  interval: 1m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: discord-bot
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: discord-bot
+  policy:
+    numerical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: discord-bot
+  namespace: flux-system
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: application-repository
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: fluxcdbot
+        email: fluxcdbot@users.noreply.github.com
+    push:
+      branch: main
+  update:
+    path: ./k8s
+    strategy: Setters
