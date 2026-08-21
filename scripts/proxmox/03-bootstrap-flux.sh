@@ -8,7 +8,7 @@ export GITHUB_USER=<your-github-user>
 
 flux bootstrap github \
   --owner=$GITHUB_USER \
-  --repository=infra-repository \
+  --repository=discord-bot-infra \
   --branch=main \
   --path=clusters/prod \
   --personal
