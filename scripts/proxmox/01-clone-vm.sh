@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TEMPLATE_ID=9000
-NEW_VMID=101
+TEMPLATE_ID=9010
+NEW_VMID=501
 NEW_NAME="discord-bot-host"
 
 qm clone $TEMPLATE_ID $NEW_VMID --name $NEW_NAME --full
